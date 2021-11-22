@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+    <div id="cards">
+
+        <!-- <div class="card">
+            <div class="poster">
+                <img src="images/poster.jpg" alt="">
+                <img src="images/sale.png" alt="">
+                <img src="images/type.png" alt="">
+            </div>
+            <div class="title">
+                <div>Тайная жизнь</div>
+                <div>домашних животных 2</div>
+            </div>
+            <div class="price">
+                <div>14,00 руб</div>
+                <div>17,00 руб</div>
+            </div>
+            <div class="rating">
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star_half</span>
+<span class="material-icons">star_border</span>
+            </div>
+            <div class="action">
+                <img src="images/order.jpg" alt="">
+            </div>
+
+        </div>   -->
+
+    </div>
+
+
+    <script>
+
+        let card = {
+            file: "poster.jpg",
+            type: "type.png",
+            sale: "sale.png",
+            cardName1: "Тайная жизнь",
+            cardName2: "домашних животных 2",
+            price: 19,
+            currency: "руб.",
+            act: true,
+            rating: 4,
+            buy: "order.jpg" 
+        }
+
+        // Полная стоимость
+        let fullPrice = `${card.price},00 ${card.currency}`;
+
+        // console.log('fullPrice',fullPrice);
+
+        //Стоимость по акции - 10%
+    let salePrice = `${Math.round(card.price*0.9)},00 ${card.currency}`
+
+        // console.log('salePrice',salePrice);
+
+        //Расчет рейтинга
+        let stars = "";
+        for (i=1; i<=card.rating; i++) {
+            stars += '<span class="material-icons">star</span>';
+        }
+        stars += '<span class="material-icons">star_border</span>';
+
+        // console.log(stars);
+            if (card.act) p = `
+                <div>${salePrice}</div>
+                <div>${fullPrice}</div>`;
+                else p = `<div>${fullPrice}</div>`;
+
+        let s = `
+        <div class="card">
+            <div class="poster">
+                <img src="images/${card.file}" alt="">
+                <img id="sale" src="images/${card.sale}" alt="">
+                <img src="images/${card.type}" alt="">
+            </div>
+            <div class="title">
+                <div>${card.cardName1}</div>
+                <div>${card.cardName2}</div>
+            </div>
+            <div class="price">
+               ${p}
+            </div>
+            <div class="rating">
+                ${stars}
+            </div>
+            <div class="action">
+            <img src="images/${card.buy}" alt="">
+            </div>
+
+        </div> 
+        `;
+
+        cards.innerHTML = s;
+
+        if(card.act) sale.style.visibility = "visible";
+            else sale.style.visibility = "hidden";
+
+        
+
+
+    </script>
+
+</body>
+</html>

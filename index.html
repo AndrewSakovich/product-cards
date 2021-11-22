@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+    <div id="cards">
+
+        <!-- <div class="card">
+            <div class="poster">
+                <img src="images/poster.jpg" alt="">
+                <img src="images/sale.png" alt="">
+                <img src="images/type.png" alt="">
+            </div>
+            <div class="title">
+                <div>Тайная жизнь</div>
+                <div>домашних животных 2</div>
+            </div>
+            <div class="price">
+                <div>14,00 руб</div>
+                <div>17,00 руб</div>
+            </div>
+            <div class="rating">
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star_half</span>
+<span class="material-icons">star_border</span>
+            </div>
+            <div class="action">
+                <img src="images/order.jpg" alt="">
+            </div>
+
+        </div>   -->
+
+    </div>
+
+
+    <script>
+
+        let myCard = [
+        {
+            file: "poster.jpg",
+            type: "type.png",
+            sale: "sale.png",
+            cardName1: "Тайная жизнь",
+            cardName2: "домашних животных 2",
+            price: 19,
+            currency: "руб.",
+            act: true,
+            rating: 4,
+            buy: "order.jpg" 
+        },
+        {
+            file: "toy4.jpg",
+            type: "type.png",
+            sale: "sale.png",
+            cardName1: "История игрушек 4",
+            cardName2: "Приключения Вилкинса",
+            price: 17,
+            currency: "руб.",
+            act: false,
+            rating: 4,
+            buy: "order.jpg" 
+        },
+        {
+            file: "ferd.jpg",
+            type: "type.png",
+            sale: "sale.png",
+            cardName1: "Фердинанд",
+            cardName2: "Побег из коровника",
+            price: 20,
+            currency: "руб.",
+            act: true,
+            rating: 4,
+            buy: "order.jpg" 
+        },
+
+    ];
+
+        let s = "";
+        for (j=0; j<myCard.length; j++) {
+        // Полная стоимость
+        let fullPrice = `${myCard[j].price},00 ${myCard[j].currency}`;
+
+        // console.log('fullPrice',fullPrice);
+
+        //Стоимость по акции - 10%
+    let salePrice = `${Math.round(myCard[j].price*0.9)},00 ${myCard[j].currency}`
+
+        // console.log('salePrice',salePrice);
+
+        //Расчет рейтинга
+        let stars = "", styl = "";
+        for (i=1; i<=myCard[j].rating; i++) {
+            stars += '<span class="material-icons">star</span>';
+        }
+        stars += '<span class="material-icons">star_border</span>';
+
+        // console.log(stars);
+            if (myCard[j].act) { p = `
+                <div>${salePrice}</div>
+                <div>${fullPrice}</div>`; 
+                styl = `<img id="sale" style="visibility: visible" src="images/${myCard[j].sale}" alt="">`;
+            }
+
+                else { p = `<div>${fullPrice}</div>`; 
+                styl = `<img id="sale" style="visibility: hidden" src="images/${myCard[j].sale}" alt="">`;
+            }
+
+                
+
+        s += `
+        <div class="card">
+            <div class="poster">
+                <img src="images/${myCard[j].file}" alt="">
+              ${styl}
+                <img src="images/${myCard[j].type}" alt="">
+            </div>
+            <div class="title">
+                <div>${myCard[j].cardName1}</div>
+                <div>${myCard[j].cardName2}</div>
+            </div>
+            <div class="price">
+               ${p}
+            </div>
+            <div class="rating">
+                ${stars}
+            </div>
+            <div class="action">
+            <img src="images/${myCard[j].buy}" alt="">
+            </div>
+
+        </div> 
+        `;
+}
+
+        cards.innerHTML = s;
+
+
+        // if(myCard[j].act) sale.style.visibility = "visible";
+        //     else sale.style.visibility = "hidden";
+
+    
+
+
+    </script>
+
+</body>
+</html>
